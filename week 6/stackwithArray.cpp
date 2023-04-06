@@ -3,35 +3,27 @@
 using namespace std;
 
 class Stack {
-    int top; // index of the top element
-    int* a; // pointer to the array
-    int capacity; // maximum capacity of the stack
-
+    int top;
+  
 public:
-    Stack(int size) { // constructor to initialize the stack
-        capacity = size;
-        a = new int[capacity];
-        top = -1;
-    }
+    int a[100]; // Maximum size of Stack
+  
+    Stack() { top = -1; }
     void push(int x);
     int pop();
     void display();
-    bool isEmpty();
-    bool isFull();
-    int stackTop();
-
 };
-
-// Function to push an element onto the stack 
+  
 void Stack::push(int x)
 {
-    if(top>=capacity -1)
+    int length = sizeof(a) / sizeof(int);
+    if(top>=length-1)
         cout<<"Stack Overflow"<<endl;
     else {
       a[++top] = x;
    }
 }
-// Function to pop an element onto the stack
+  
 int Stack::pop()
 {
     if (top < 0) {
@@ -43,7 +35,7 @@ int Stack::pop()
         return x;
     }
 }
-// Function to print the elements of the stack
+
 void Stack::display()
 {
    if(top>=0) {
@@ -54,28 +46,13 @@ void Stack::display()
    } else
    cout<<"Stack is empty";
 }
-// Function to check if the stack is empty
-bool Stack::isEmpty()
-{
-    return (top < 0);
-}
-// Function to check if the stack is full
-bool Stack::isFull(){
-    return(top == capacity - 1);
-}
-// Function to return the top of the stack
-int Stack::stackTop(){
-    return(a[top]);
-}
-
-
 
 int main(){
     int MyNumber;
     cout<<"Enter the array size number::";
     cin>>MyNumber;
     auto start = chrono::steady_clock::now();
-    class Stack stack(MyNumber);
+    class Stack stack;
     for(int r=0; r<MyNumber ; r++){
         stack.push(rand()%10);
     }
